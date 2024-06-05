@@ -1,97 +1,54 @@
-//source code by Harsh Kumar Narula, harsh.narula@iitbombay.org
 #include "MTEngine.hpp"
 #include <iostream>
 
 using namespace std;
 
-/**
- * @brief Constructs an instance of the MTEngine class.
- *
- * This constructor initializes the random number generator (RNG) with the specified seed.
- *
- * @param myseed The seed value to initialize the RNG.
- */
 MTEngine::MTEngine(long long myseed)
 {
 	rng.seed(myseed);
 	wasseededwith = myseed;
 }
 
-/**
- * \brief Constructs an instance of the MTEngine class.
- *
- * This constructor initializes the random number generator (RNG) of the MTEngine class
- * with a seed based on the current system time. The seed is used to generate random numbers
- * in subsequent calls to the RNG.
- */
 MTEngine::MTEngine()
 {
 	long long myseed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
-	// std::seed_seq ss{ uint32_t(myseed & 0xffffffff), uint32_t(myseed >> 32) };
-	// rng.seed(ss);
+	//std::seed_seq ss{ uint32_t(myseed & 0xffffffff), uint32_t(myseed >> 32) };
+	//rng.seed(ss);
 	rng.seed(myseed);
 	wasseededwith = myseed;
 }
 
-// THIS SHOULD BE USED WITH EXTREME CARE
-/**
- * Reseeds the random number generator with a specified seed value.
- *
- * @param None
- * @return None
- */
+//THIS SHOULD BE USED WITH EXTREME CARE
 void MTEngine::reseed()
 {
 	rng.seed(wasseededwith);
 }
 
-/**
- * Seeds the random number generator with a random value based on the current time.
- * This function uses the high-resolution clock to generate a seed value and sets it as the seed for the random number generator.
- * The seed value is also stored in the `wasseededwith` member variable.
- */
 void MTEngine::randomseed()
 {
 	long long myseed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
-	// std::seed_seq ss{ uint32_t(myseed & 0xffffffff), uint32_t(myseed >> 32) };
-	// rng.seed(ss);
+	//std::seed_seq ss{ uint32_t(myseed & 0xffffffff), uint32_t(myseed >> 32) };
+	//rng.seed(ss);
 	rng.seed(myseed);
 	wasseededwith = myseed;
 }
 
-/**
- * Sets the seed value for the random number generator.
- *
- * @param myseed The seed value to set.
- */
 void MTEngine::setseed(long long myseed)
 {
 	rng.seed(myseed);
 	wasseededwith = myseed;
 }
 
-/**
- * Generates a random double value between 0 and 1.
- *
- * @return The generated random double value.
- */
 double MTEngine::rand()
 {
 	std::uniform_real_distribution<double> unif(0, 1);
 	return unif(rng);
 }
 
-/**
- * Returns a random choice between two given values.
- *
- * @param a The first value.
- * @param b The second value.
- * @return The randomly chosen value between `a` and `b`.
- */
 double MTEngine::choice(double a, double b)
 {
 	double r = rand();
-	if (r <= 0.5)
+	if (r<=0.5)
 	{
 		return a;
 	}
@@ -102,22 +59,14 @@ double MTEngine::choice(double a, double b)
 	return a;
 }
 
-/**
- * Returns a random choice between three given values.
- *
- * @param a The first value.
- * @param b The second value.
- * @param c The third value.
- * @return A random choice between a, b, and c.
- */
 double MTEngine::choice(double a, double b, double c)
 {
 	double r = rand();
-	if (r <= 1.0 / 3.0)
+	if (r <= 1.0/3.0)
 	{
 		return a;
 	}
-	else if (r <= 2.0 / 3.0)
+	else if (r<=2.0/3.0)
 	{
 		return b;
 	}
@@ -128,81 +77,54 @@ double MTEngine::choice(double a, double b, double c)
 	return a;
 }
 
-// template int MTEngine::Choice<int>(int, int);
+//template int MTEngine::Choice<int>(int, int);
 
-/**
- * Returns a randomly chosen element from the given vector A based on the provided probability distribution function (PDF).
- *
- * @param A The vector of elements to choose from.
- * @param PDF The probability distribution function corresponding to each element in vector A.
- * @return The randomly chosen element from vector A.
- */
-/**
- * Returns a randomly chosen element from the given vector A based on the provided probability distribution function (PDF).
- *
- * @param A The vector of elements to choose from.
- * @param PDF The probability distribution function (PDF) corresponding to the elements in vector A.
- * @return The randomly chosen element from vector A.
- */
+
+
 double MTEngine::choice(std::vector<double> A, std::vector<double> PDF)
 {
 	unsigned int points = A.size();
 	std::vector<double> CDF(points, 0);
-
+	
 	CDF[0] = PDF[0];
-	for (size_t i = 0; i < points - 1; i++)
+	for (size_t i = 0; i < points-1; i++)
 	{
 		CDF[i + 1] = CDF[i] + PDF[i];
 	}
 
-	double r = CDF[points - 1] * rand();
-
-	if (r < CDF[0])
+	double r = CDF[points-1]*rand();
+	
+	if (r<CDF[0])
 	{
 		return A[0];
 	}
 
 	else
 	{
-		for (size_t i = 0; i < points - 1; i++)
+		for (size_t i = 0; i < points-1; i++)
 		{
-			if (r >= CDF[i] && r < CDF[i + 1])
+			if (r>=CDF[i] && r < CDF[i+1])
 			{
-				return A[i + 1];
+				return A[i+1];
 			}
+
 		}
 	}
 }
 
-/**
- * Generates a random number from a normal distribution with mean 0 and standard deviation 1.
- *
- * @return The generated random number.
- */
+
+
 double MTEngine::randn()
 {
 	std::normal_distribution<double> gauss(0, 1);
 	return gauss(rng);
 }
 
-/**
- * Generates a random number from a normal distribution with the specified mean and variance.
- *
- * @param mean The mean of the normal distribution.
- * @param var The variance of the normal distribution.
- * @return A random number from the normal distribution.
- */
 double MTEngine::randn(double mean, double var)
 {
 	std::normal_distribution<double> gauss(mean, var);
 	return gauss(rng);
 }
-/**
- * Generates a vector of random numbers between 0 and 1.
- *
- * @param m The number of random numbers to generate.
- * @return A vector of random numbers between 0 and 1.
- */
 vector<double> MTEngine::rand(int m)
 {
 	// initialize a uniform distribution between a and b
@@ -215,12 +137,6 @@ vector<double> MTEngine::rand(int m)
 	return A;
 }
 
-/**
- * Generates a vector of random numbers from a standard normal distribution.
- *
- * @param m The number of random numbers to generate.
- * @return A vector of random numbers from a standard normal distribution.
- */
 vector<double> MTEngine::randn(int m)
 {
 	std::normal_distribution<double> gauss(0, 1);
@@ -233,17 +149,10 @@ vector<double> MTEngine::randn(int m)
 	return A;
 }
 
-/**
- * Generates a random matrix of size m x n.
- *
- * @param m The number of rows in the matrix.
- * @param n The number of columns in the matrix.
- * @return A vector of vectors representing the random matrix.
- */
 vector<vector<double>> MTEngine::rand(int m, int n)
 {
 	std::vector<std::vector<double>> matrix;
-	matrix.resize(m, std::vector<double>(n, 0.0)); // Initialized With 0.0
+	matrix.resize(m, std::vector<double>(n, 0.0)); //Initialized With 0.0
 	std::uniform_real_distribution<double> unif(0, 1);
 	for (size_t i = 0; i < m; i++)
 	{
@@ -256,17 +165,10 @@ vector<vector<double>> MTEngine::rand(int m, int n)
 	return matrix;
 }
 
-/**
- * Generates a matrix of random numbers from a standard normal distribution.
- *
- * @param m The number of rows in the matrix.
- * @param n The number of columns in the matrix.
- * @return A matrix of size m x n with random numbers from a standard normal distribution.
- */
 vector<vector<double>> MTEngine::randn(int m, int n)
 {
 	std::vector<std::vector<double>> matrix;
-	matrix.resize(m, std::vector<double>(n, 0.0)); // Initialized With 0.0
+	matrix.resize(m, std::vector<double>(n, 0.0)); //Initialized With 0.0
 	std::normal_distribution<double> gauss(0, 1);
 	for (size_t i = 0; i < m; i++)
 	{
@@ -279,14 +181,6 @@ vector<vector<double>> MTEngine::randn(int m, int n)
 	return matrix;
 }
 
-/**
- * Generates a vector of random double values within the range [a, b].
- *
- * @param a The lower bound of the range.
- * @param b The upper bound of the range.
- * @param p The number of random values to generate.
- * @return A vector of random double values.
- */
 vector<double> MTEngine::rand(double a, double b, int p)
 {
 	if (a > b)
@@ -306,13 +200,6 @@ vector<double> MTEngine::rand(double a, double b, int p)
 	return A;
 }
 
-/**
- * Generates a random number between the given range [a, b].
- *
- * @param a The lower bound of the range.
- * @param b The upper bound of the range.
- * @return A random number between the range [a, b].
- */
 double MTEngine::rand(double a, double b)
 {
 	double r = rand();
@@ -320,13 +207,6 @@ double MTEngine::rand(double a, double b)
 	return r * a + (1 - r) * b;
 }
 
-/**
- * Generates a random integer between the given range [a, b].
- *
- * @param a The lower bound of the range.
- * @param b The upper bound of the range.
- * @return A random integer between the range [a, b].
- */
 int MTEngine::randint(int a, int b)
 {
 	// initialize a uniform distribution between a and b
@@ -334,16 +214,6 @@ int MTEngine::randint(int a, int b)
 	return unif(rng);
 }
 
-/**
- * Generates a vector of random integers within a specified range.
- *
- * @param a The lower bound of the range (inclusive).
- * @param b The upper bound of the range (inclusive).
- * @param p The number of random integers to generate.
- * @param repeatation Determines whether repeated values are allowed in the generated vector.
- *                   If set to true, repeated values are allowed; otherwise, each value in the vector will be unique.
- * @return A vector of random integers within the specified range.
- */
 vector<int> MTEngine::randint(int a, int b, int p, bool repeatation)
 {
 	// initialize a uniform distribution between a and b
@@ -375,17 +245,6 @@ vector<int> MTEngine::randint(int a, int b, int p, bool repeatation)
 	return A;
 }
 
-/**
- * Generates a 2D vector of random integers within the specified range.
- *
- * @param xmin The minimum value for the x-coordinate.
- * @param xmax The maximum value for the x-coordinate.
- * @param ymin The minimum value for the y-coordinate.
- * @param ymax The maximum value for the y-coordinate.
- * @param p The number of points to generate.
- * @param repeatation Determines whether repeated points are allowed (true) or not (false).
- * @return A 2D vector of random integers.
- */
 vector<vector<int>> MTEngine::randint(int xmin, int xmax, int ymin, int ymax, int p, bool repeatation)
 {
 	// initialize a uniform distribution
@@ -396,7 +255,7 @@ vector<vector<int>> MTEngine::randint(int xmin, int xmax, int ymin, int ymax, in
 	int colCount = ymax - ymin + 1;
 
 	std::vector<std::vector<int>> points;
-	points.resize(p, std::vector<int>(2, 0)); // Initialized With 0
+	points.resize(p, std::vector<int>(2, 0)); //Initialized With 0
 
 	if (repeatation == true)
 	{
@@ -410,7 +269,7 @@ vector<vector<int>> MTEngine::randint(int xmin, int xmax, int ymin, int ymax, in
 	else
 	{
 		std::vector<std::vector<bool>> Auxilary;
-		Auxilary.resize(rowCount, std::vector<bool>(colCount, 0.0)); // Initialized With 0.0
+		Auxilary.resize(rowCount, std::vector<bool>(colCount, 0.0)); //Initialized With 0.0
 		int count = 0;
 		while (count < p)
 		{
@@ -428,19 +287,6 @@ vector<vector<int>> MTEngine::randint(int xmin, int xmax, int ymin, int ymax, in
 	return points;
 }
 
-/**
- * Generates a vector of random points within the specified range.
- *
- * @param xmin The minimum value for the x-coordinate.
- * @param xmax The maximum value for the x-coordinate.
- * @param ymin The minimum value for the y-coordinate.
- * @param ymax The maximum value for the y-coordinate.
- * @param zmin The minimum value for the z-coordinate.
- * @param zmax The maximum value for the z-coordinate.
- * @param p The number of points to generate.
- * @param repeatation Determines whether the points can be repeated.
- * @return A vector of arrays representing the generated points.
- */
 vector<std::array<double, 3>> MTEngine::randint(int xmin, int xmax, int ymin, int ymax, int zmin, int zmax, int p, bool repeatation)
 {
 	// initialize a uniform distribution
@@ -452,10 +298,10 @@ vector<std::array<double, 3>> MTEngine::randint(int xmin, int xmax, int ymin, in
 	int X2 = ymax - ymin + 1;
 	int X3 = zmax - zmin + 1;
 	int X1X2 = X1 * X2;
-	int X1X2X3 = X1 * X2 * X3;
+	int X1X2X3 = X1 * X2*X3;
 
 	std::vector<std::array<double, 3>> points(p);
-	// points.resize(p, std::vector<int>(3, 0)); //Initialized With 0
+	//points.resize(p, std::vector<int>(3, 0)); //Initialized With 0
 
 	if (repeatation == true)
 	{
@@ -487,13 +333,6 @@ vector<std::array<double, 3>> MTEngine::randint(int xmin, int xmax, int ymin, in
 	return points;
 }
 
-/**
- * Generates a sequence of integers between 'a' and 'b'.
- *
- * @param a The starting value of the sequence.
- * @param b The ending value of the sequence.
- * @return A vector containing the generated sequence of integers.
- */
 vector<int> MTEngine::sequence(int a, int b)
 {
 	int p = b - a;
@@ -507,12 +346,6 @@ vector<int> MTEngine::sequence(int a, int b)
 	return I;
 }
 
-/**
- * Returns a vector of size n with all elements set to 1.
- *
- * @param n The size of the vector.
- * @return A vector of size n with all elements set to 1.
- */
 vector<int> MTEngine::ones(int n)
 {
 	vector<int> I(n, 0);
@@ -522,3 +355,4 @@ vector<int> MTEngine::ones(int n)
 	}
 	return I;
 }
+
