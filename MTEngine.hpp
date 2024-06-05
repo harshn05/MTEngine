@@ -11,6 +11,13 @@
 
 
 
+/**
+ * @class MTEngine
+ * @brief A class that represents a random number generator engine.
+ *
+ * The MTEngine class provides various methods for generating random numbers and sequences.
+ * It is based on the Mersenne Twister algorithm (mt19937_64).
+ */
 class MTEngine
 {
 private:
@@ -52,6 +59,11 @@ public:
 };
 
 template<class T>
+/**
+ * Shuffles the elements in the given vector using the random number generator.
+ *
+ * @param X The vector to be shuffled.
+ */
 inline void MTEngine::Shuffle(std::vector<T>& X)
 {
 	std::shuffle(X.begin(), X.end(), rng);
@@ -60,6 +72,13 @@ inline void MTEngine::Shuffle(std::vector<T>& X)
 
 
 template<typename T>
+/**
+ * Makes a random choice between two values.
+ * 
+ * @param A The first value to choose from.
+ * @param B The second value to choose from.
+ * @return The randomly chosen value between A and B.
+ */
 inline T MTEngine::choice(T A, T B)
 {
 	double r = this->rand();
@@ -70,6 +89,13 @@ inline T MTEngine::choice(T A, T B)
 }
 
 template<typename T, typename... Args>
+/**
+ * Returns a randomly chosen element from a list of arguments.
+ *
+ * @param Start The first element in the list.
+ * @param args The remaining elements in the list.
+ * @return The randomly chosen element.
+ */
 inline T MTEngine::Choice(T Start, Args... args)
 {
 	double r = rand();
