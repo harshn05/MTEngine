@@ -24,7 +24,8 @@ The MTEngine class provides a flexible and user-friendly interface for generatin
 
 7. **Random choice from a list of values:**
    The Choice(T Start, Args... args) method randomly chooses an element from the given arguments.
-   
+
+   [Click here for the detailed documentation of MTEngine.](https://harshn05.github.io/MTEngine/)
 
    Harsh Kumar Narula
    <harsh.narula@iitbombay.org>
