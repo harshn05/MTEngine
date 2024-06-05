@@ -1,7 +1,7 @@
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = "PrintUtils"
+PROJECT_NAME           = "MTEngine"
 PROJECT_NUMBER         = 
-PROJECT_BRIEF          = "std::cout Overloaded"
+PROJECT_BRIEF          = "A random number generator engine for C++ based on the Mersenne Twister algorithm."
 PROJECT_LOGO           = 
 OUTPUT_DIRECTORY       = 
 CREATE_SUBDIRS         = NO

@@ -228,13 +228,26 @@ public:
 };
 
 template<class T>
+/**
+ * Shuffles the elements in the given vector using the Mersenne Twister engine.
+ *
+ * @param X The vector to be shuffled.
+ */
 inline void MTEngine::Shuffle(std::vector<T>& X)
 {
+	std::shuffle(X.begin(), X.end(), rng);
 }
 
 
 
 template<typename T>
+/**
+ * Makes a random choice between two values.
+ *
+ * @param A The first value to choose from.
+ * @param B The second value to choose from.
+ * @return The randomly chosen value between A and B.
+ */
 inline T MTEngine::choice(T A, T B)
 {
 	double r = this->rand();
@@ -245,6 +258,13 @@ inline T MTEngine::choice(T A, T B)
 }
 
 template<typename T, typename... Args>
+/**
+ * Returns a randomly chosen element from the given arguments.
+ *
+ * @param Start The first element to consider for selection.
+ * @param args The remaining elements to consider for selection.
+ * @return The selected element.
+ */
 inline T MTEngine::Choice(T Start, Args... args)
 {
 	double r = rand();
