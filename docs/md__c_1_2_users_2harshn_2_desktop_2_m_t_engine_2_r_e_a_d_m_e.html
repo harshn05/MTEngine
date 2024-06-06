@@ -95,7 +95,7 @@ $(function(){initNavTree('md__c_1_2_users_2harshn_2_desktop_2_m_t_engine_2_r_e_a
   <div class="headertitle"><div class="title">MTEngine</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The <a class="el" href="class_m_t_engine.html" title="A class that represents a random number generator engine.">MTEngine</a> project is a C++ implementation of a random number generator based on the Mersenne Twister algorithm. The Mersenne Twister is a pseudorandom number generating algorithm that is widely used because of its fast generation times and high period.</p>
+<div class="textblock"><p>The <a class="el" href="class_m_t_engine.html" title="A class that represents a random number generator engine.">MTEngine</a> class in the provided C++ code wraps the std::mt19937_64 engine from the &lt;random&gt; library, which is a Mersenne Twister random number generator. This class provides a higher-level interface for generating random numbers and sequences, making it easier to use in various contexts. The Mersenne Twister is a pseudorandom number generating algorithm that is widely used because of its fast generation times and high period.</p>
 <p>The <a class="el" href="class_m_t_engine.html" title="A class that represents a random number generator engine.">MTEngine</a> class provides a flexible and user-friendly interface for generating random numbers. It offers several functionalities:</p>
 <ol type="1">
 <li><b>Initialization with a given seed:</b> The constructor <a class="el" href="class_m_t_engine.html" title="A class that represents a random number generator engine.">MTEngine(long long myseed)</a> allows users to initialize the random number generator with a specific seed value. This is useful when deterministic behavior is required, i.e., the same sequence of random numbers needs to be generated across multiple runs.</li>
@@ -105,6 +105,7 @@ $(function(){initNavTree('md__c_1_2_users_2harshn_2_desktop_2_m_t_engine_2_r_e_a
 <li><b>Random number generation:</b> The rand(), randn(), and randn(double mean, double var) methods generate random numbers between 0 and 1, from a standard normal distribution, and from a normal distribution with a given mean and variance, respectively.</li>
 <li><b>Random choice between two values:</b> The choice(T A, T B) method randomly chooses between two given values.</li>
 <li><p class="startli"><b>Random choice from a list of values:</b> The Choice(T Start, Args... args) method randomly chooses an element from the given arguments.</p>
+<p class="startli">By wrapping the std::mt19937_64 engine in a class like <a class="el" href="class_m_t_engine.html" title="A class that represents a random number generator engine.">MTEngine</a>, the developer can provide a more user-friendly API for generating random numbers and sequences, and can also add additional functionality like the ability to shuffle a vector or make a random choice from a list of options.</p>
 <p class="startli"><a href="https://harshn05.github.io/MTEngine/">Click here for the detailed documentation of MTEngine.</a></p>
 <p class="startli">Harsh Kumar Narula <a href="#" onclick="location.href='mai'+'lto:'+'har'+'sh'+'.na'+'ru'+'la@'+'ii'+'tbo'+'mb'+'ay.'+'or'+'g'; return false;">harsh<span class="obfuscator">.nosp@m.</span>.nar<span class="obfuscator">.nosp@m.</span>ula@i<span class="obfuscator">.nosp@m.</span>itbo<span class="obfuscator">.nosp@m.</span>mbay.<span class="obfuscator">.nosp@m.</span>org</a> </p>
 </li>
@@ -115,7 +116,7 @@ $(function(){initNavTree('md__c_1_2_users_2harshn_2_desktop_2_m_t_engine_2_r_e_a
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Jun 5 2024 22:46:53 for MTEngine by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+    <li class="footer">Generated on Thu Jun 6 2024 11:10:55 for MTEngine by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>
 </body>
