@@ -1,6 +1,6 @@
 # MTEngine
 
-The MTEngine project is a C++ implementation of a random number generator based on the Mersenne Twister algorithm. The Mersenne Twister is a pseudorandom number generating algorithm that is widely used because of its fast generation times and high period.
+The MTEngine class in the provided C++ code wraps the std::mt19937_64 engine from the <random> library, which is a Mersenne Twister random number generator. This class provides a higher-level interface for generating random numbers and sequences, making it easier to use in various contexts. The Mersenne Twister is a pseudorandom number generating algorithm that is widely used because of its fast generation times and high period.
 
 The MTEngine class provides a flexible and user-friendly interface for generating random numbers. It offers several functionalities:
 
@@ -24,6 +24,8 @@ The MTEngine class provides a flexible and user-friendly interface for generatin
 
 7. **Random choice from a list of values:**
    The Choice(T Start, Args... args) method randomly chooses an element from the given arguments.
+
+   By wrapping the std::mt19937_64 engine in a class like MTEngine, the developer can provide a more user-friendly API for generating random numbers and sequences, and can also add additional functionality like the ability to shuffle a vector or make a random choice from a list of options.
 
    [Click here for the detailed documentation of MTEngine.](https://harshn05.github.io/MTEngine/)
 
