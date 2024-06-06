@@ -95,41 +95,36 @@ template<typename T, typename... Args>
  * @param Start The first element in the list.
  * @param args The remaining elements in the list.
  * @return The randomly chosen element.
+ * @throw std::runtime_error if no match is found.
  */
 inline T MTEngine::Choice(T Start, Args... args)
 {
-	double r = rand();
-	const std::size_t n = sizeof...(Args) + 1;
-	if (r <= 1.0 / n)
-	{
-		std::cout << "First Element Returned" <<  Start<<std::endl;
-		return Start;
-	}
-	int I = 0;
-	int i = 2;
-	while (i<=n)
-	{
-		if (r <= double(i) / n)
-		{
-			I = i - 1;
-			break;
-		}
-		i++;
-	}
+    double r = rand();
+    const std::size_t n = sizeof...(Args) + 1;
+    if (r <= 1.0 / n)
+    {
+        return Start;
+    }
+    int I = 0;
+    int i = 2;
+    while (i<=n)
+    {
+        if (r <= double(i) / n)
+        {
+            I = i - 1;
+            break;
+        }
+        i++;
+    }
 
-	
-	int count = 1;
-	for (const auto p : { args... }) {
-		if (count == I)
-		{
-			std::cout << I+1<<  " Element Returned " << p << std::endl;
-			return p;
-		}
-		count++;
-	}
+    int count = 1;
+    for (const auto p : { args... }) {
+        if (count == I)
+        {
+            return p;
+        }
+        count++;
+    }
 
-
-	return 0;
-
-
+    throw std::runtime_error("No match found in Choice method.");
 }

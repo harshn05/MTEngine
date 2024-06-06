@@ -178,14 +178,13 @@ $(function(){initNavTree('_m_t_engine_8hpp_source.html',''); initResizable(); })
 </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="foldopen" id="foldopen00099" data-start="{" data-end="}">
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="class_m_t_engine.html#a343114470d9218e0d3b7a4adef73a542">   99</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="class_m_t_engine.html#a343114470d9218e0d3b7a4adef73a542">MTEngine::Choice</a>(T Start, Args... args)</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>{</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">double</span> r = <a class="code hl_function" href="class_m_t_engine.html#abf13506763be69dc291d10ac8d0936c5">rand</a>();</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">const</span> std::size_t n = <span class="keyword">sizeof</span>...(Args) + 1;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">if</span> (r &lt;= 1.0 / n)</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    {</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;First Element Returned&quot;</span> &lt;&lt;  Start&lt;&lt;std::endl;</div>
+<div class="foldopen" id="foldopen00100" data-start="{" data-end="}">
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="class_m_t_engine.html#a343114470d9218e0d3b7a4adef73a542">  100</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="class_m_t_engine.html#a343114470d9218e0d3b7a4adef73a542">MTEngine::Choice</a>(T Start, Args... args)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>{</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">double</span> r = <a class="code hl_function" href="class_m_t_engine.html#abf13506763be69dc291d10ac8d0936c5">rand</a>();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">const</span> std::size_t n = <span class="keyword">sizeof</span>...(Args) + 1;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">if</span> (r &lt;= 1.0 / n)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    {</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">return</span> Start;</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">int</span> I = 0;</div>
@@ -200,28 +199,23 @@ $(function(){initNavTree('_m_t_engine_8hpp_source.html',''); initResizable(); })
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        i++;</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordtype">int</span> count = 1;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> p : { args... }) {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">if</span> (count == I)</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        {</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            std::cout &lt;&lt; I+1&lt;&lt;  <span class="stringliteral">&quot; Element Returned &quot;</span> &lt;&lt; p &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            <span class="keywordflow">return</span> p;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        }</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        count++;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    }</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">int</span> count = 1;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> p : { args... }) {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">if</span> (count == I)</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            <span class="keywordflow">return</span> p;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        count++;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No match found in Choice method.&quot;</span>);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
 </div>
 <div class="ttc" id="aclass_m_t_engine_html"><div class="ttname"><a href="class_m_t_engine.html">MTEngine</a></div><div class="ttdoc">A class that represents a random number generator engine.</div><div class="ttdef"><b>Definition</b> <a href="#l00021">MTEngine.hpp:22</a></div></div>
 <div class="ttc" id="aclass_m_t_engine_html_a0fbc26563096539465ee367c250fc33f"><div class="ttname"><a href="class_m_t_engine.html#a0fbc26563096539465ee367c250fc33f">MTEngine::wasseededwith</a></div><div class="ttdeci">long long wasseededwith</div><div class="ttdef"><b>Definition</b> <a href="#l00029">MTEngine.hpp:29</a></div></div>
 <div class="ttc" id="aclass_m_t_engine_html_a21014de3914608c66ab94c5ada797756"><div class="ttname"><a href="class_m_t_engine.html#a21014de3914608c66ab94c5ada797756">MTEngine::ones</a></div><div class="ttdeci">std::vector&lt; int &gt; ones(int n)</div><div class="ttdef"><b>Definition</b> <a href="_m_t_engine_8cpp_source.html#l00520">MTEngine.cpp:520</a></div></div>
 <div class="ttc" id="aclass_m_t_engine_html_a240901ef3275dae47686e757544d6d61"><div class="ttname"><a href="class_m_t_engine.html#a240901ef3275dae47686e757544d6d61">MTEngine::randint</a></div><div class="ttdeci">int randint(int a, int b)</div><div class="ttdef"><b>Definition</b> <a href="_m_t_engine_8cpp_source.html#l00334">MTEngine.cpp:334</a></div></div>
-<div class="ttc" id="aclass_m_t_engine_html_a343114470d9218e0d3b7a4adef73a542"><div class="ttname"><a href="class_m_t_engine.html#a343114470d9218e0d3b7a4adef73a542">MTEngine::Choice</a></div><div class="ttdeci">T Choice(T Start, Args... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00099">MTEngine.hpp:99</a></div></div>
+<div class="ttc" id="aclass_m_t_engine_html_a343114470d9218e0d3b7a4adef73a542"><div class="ttname"><a href="class_m_t_engine.html#a343114470d9218e0d3b7a4adef73a542">MTEngine::Choice</a></div><div class="ttdeci">T Choice(T Start, Args... args)</div><div class="ttdef"><b>Definition</b> <a href="#l00100">MTEngine.hpp:100</a></div></div>
 <div class="ttc" id="aclass_m_t_engine_html_a3d4592b65799d053b0a00f0d2a03599f"><div class="ttname"><a href="class_m_t_engine.html#a3d4592b65799d053b0a00f0d2a03599f">MTEngine::sequence</a></div><div class="ttdeci">std::vector&lt; int &gt; sequence(int a, int b)</div><div class="ttdef"><b>Definition</b> <a href="_m_t_engine_8cpp_source.html#l00501">MTEngine.cpp:501</a></div></div>
 <div class="ttc" id="aclass_m_t_engine_html_a686db61987f6e8a4e75801f45b1833b7"><div class="ttname"><a href="class_m_t_engine.html#a686db61987f6e8a4e75801f45b1833b7">MTEngine::randomseed</a></div><div class="ttdeci">void randomseed()</div><div class="ttdef"><b>Definition</b> <a href="_m_t_engine_8cpp_source.html#l00059">MTEngine.cpp:59</a></div></div>
 <div class="ttc" id="aclass_m_t_engine_html_a7e5bc79070625240c2c64bfbe80b0dd9"><div class="ttname"><a href="class_m_t_engine.html#a7e5bc79070625240c2c64bfbe80b0dd9">MTEngine::Shuffle</a></div><div class="ttdeci">void Shuffle(std::vector&lt; T &gt; &amp;X)</div><div class="ttdef"><b>Definition</b> <a href="#l00067">MTEngine.hpp:67</a></div></div>
@@ -237,7 +231,7 @@ $(function(){initNavTree('_m_t_engine_8hpp_source.html',''); initResizable(); })
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_m_t_engine_8hpp.html">MTEngine.hpp</a></li>
-    <li class="footer">Generated on Thu Jun 6 2024 11:19:56 for MTEngine by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+    <li class="footer">Generated on Thu Jun 6 2024 11:33:41 for MTEngine by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>
 </body>

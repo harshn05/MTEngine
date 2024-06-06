@@ -41,10 +41,17 @@ int main()
 
     /**
      * The contents of the vector are printed to the console.
-     * Note: This operation requires either a loop to print each element individually
-     * or an overloaded operator<< for vectors, neither of which are present in this code.
+     * an overloaded operator<< for vectors from PrintUtils.hpp is used to print the vector.
      */
     std::cout << v << std::endl;
+
+
+    /**
+     * The Choice() function of the MTEngine class is called with 15 arguments.
+     * This function is assumed to randomly select and return one of the provided arguments.
+     * The selected number is then printed to the console.
+     */
+    std::cout<<engine.Choice(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)<<std::endl;
 
     /**
      * The main function returns 0, indicating successful execution of the program.
