@@ -1,6 +1,6 @@
 # MTEngine
 
-The MTEngine class in the provided C++ code wraps the std::mt19937_64 engine from the <random> library, which is a Mersenne Twister random number generator. This class provides a higher-level interface for generating random numbers and sequences, making it easier to use in various contexts. The Mersenne Twister is a pseudorandom number generating algorithm that is widely used because of its fast generation times and high period.
+MTEngine wraps the std::mt19937_64 engine from the standard **random.h** library, which is a Mersenne Twister random number generator. This class provides a higher-level interface for generating random numbers and sequences, making it easier to use in various contexts. The Mersenne Twister is a pseudorandom number generating algorithm that is widely used because of its fast generation times and high period.
 
 The MTEngine class provides a flexible and user-friendly interface for generating random numbers. It offers several functionalities:
 
