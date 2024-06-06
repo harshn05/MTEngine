@@ -519,14 +519,19 @@ template&lt;typename T , typename... Args&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The randomly chosen element. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>if no match is found. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_m_t_engine_8hpp_source.html#l00099">99</a> of file <a class="el" href="_m_t_engine_8hpp_source.html">MTEngine.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  100</span>{</div>
-<div class="line"><span class="lineno">  101</span>    <span class="keywordtype">double</span> r = <a class="code hl_function" href="#abf13506763be69dc291d10ac8d0936c5">rand</a>();</div>
-<div class="line"><span class="lineno">  102</span>    <span class="keyword">const</span> std::size_t n = <span class="keyword">sizeof</span>...(Args) + 1;</div>
-<div class="line"><span class="lineno">  103</span>    <span class="keywordflow">if</span> (r &lt;= 1.0 / n)</div>
-<div class="line"><span class="lineno">  104</span>    {</div>
-<div class="line"><span class="lineno">  105</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;First Element Returned&quot;</span> &lt;&lt;  Start&lt;&lt;std::endl;</div>
+<p class="definition">Definition at line <a class="el" href="_m_t_engine_8hpp_source.html#l00100">100</a> of file <a class="el" href="_m_t_engine_8hpp_source.html">MTEngine.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  101</span>{</div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordtype">double</span> r = <a class="code hl_function" href="#abf13506763be69dc291d10ac8d0936c5">rand</a>();</div>
+<div class="line"><span class="lineno">  103</span>    <span class="keyword">const</span> std::size_t n = <span class="keyword">sizeof</span>...(Args) + 1;</div>
+<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">if</span> (r &lt;= 1.0 / n)</div>
+<div class="line"><span class="lineno">  105</span>    {</div>
 <div class="line"><span class="lineno">  106</span>        <span class="keywordflow">return</span> Start;</div>
 <div class="line"><span class="lineno">  107</span>    }</div>
 <div class="line"><span class="lineno">  108</span>    <span class="keywordtype">int</span> I = 0;</div>
@@ -541,26 +546,26 @@ template&lt;typename T , typename... Args&gt; </div>
 <div class="line"><span class="lineno">  117</span>        i++;</div>
 <div class="line"><span class="lineno">  118</span>    }</div>
 <div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>    </div>
-<div class="line"><span class="lineno">  121</span>    <span class="keywordtype">int</span> count = 1;</div>
-<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> p : { args... }) {</div>
-<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">if</span> (count == I)</div>
-<div class="line"><span class="lineno">  124</span>        {</div>
-<div class="line"><span class="lineno">  125</span>            std::cout &lt;&lt; I+1&lt;&lt;  <span class="stringliteral">&quot; Element Returned &quot;</span> &lt;&lt; p &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  126</span>            <span class="keywordflow">return</span> p;</div>
-<div class="line"><span class="lineno">  127</span>        }</div>
-<div class="line"><span class="lineno">  128</span>        count++;</div>
-<div class="line"><span class="lineno">  129</span>    }</div>
-<div class="line"><span class="lineno">  130</span> </div>
-<div class="line"><span class="lineno">  131</span> </div>
-<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  133</span> </div>
-<div class="line"><span class="lineno">  134</span> </div>
-<div class="line"><span class="lineno">  135</span>}</div>
+<div class="line"><span class="lineno">  120</span>    <span class="keywordtype">int</span> count = 1;</div>
+<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> p : { args... }) {</div>
+<div class="line"><span class="lineno">  122</span>        <span class="keywordflow">if</span> (count == I)</div>
+<div class="line"><span class="lineno">  123</span>        {</div>
+<div class="line"><span class="lineno">  124</span>            <span class="keywordflow">return</span> p;</div>
+<div class="line"><span class="lineno">  125</span>        }</div>
+<div class="line"><span class="lineno">  126</span>        count++;</div>
+<div class="line"><span class="lineno">  127</span>    }</div>
+<div class="line"><span class="lineno">  128</span> </div>
+<div class="line"><span class="lineno">  129</span>    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No match found in Choice method.&quot;</span>);</div>
+<div class="line"><span class="lineno">  130</span>}</div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="class_m_t_engine_a343114470d9218e0d3b7a4adef73a542_cgraph.svg" width="299" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_m_t_engine_a343114470d9218e0d3b7a4adef73a542_icgraph.svg" width="236" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1485,7 +1490,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_m_t_engine.html">MTEngine</a></li>
-    <li class="footer">Generated on Thu Jun 6 2024 11:19:56 for MTEngine by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+    <li class="footer">Generated on Thu Jun 6 2024 11:33:41 for MTEngine by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>
 </body>
